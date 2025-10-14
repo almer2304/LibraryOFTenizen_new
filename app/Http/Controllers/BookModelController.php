@@ -163,11 +163,11 @@ class BookModelController extends Controller
             ], 404);
         }
         $validated = $request->validate([
-            'title' => 'required|string|max:255',             
-            'author' => 'required|string|max:100',            
+            'title' => 'nullable|string|max:255',             
+            'author' => 'nullable|string|max:100',            
             'description' => 'nullable|string',              
             'cover_image' => 'nullable|string',              
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'nullable|exists:categories,id',
             'stock' => 'nullable|integer|min:0', 
         ]);
 
