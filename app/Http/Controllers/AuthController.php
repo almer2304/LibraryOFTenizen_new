@@ -51,6 +51,13 @@ class AuthController extends Controller
 
         $user = User::where('email', $validate['email'])->first();
 
+        if(!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email atau password salah',
+            ], 401);
+        }
+
         $token = $user->createToken('api-token')->plainTextToken;
 
         return response()->json([
